@@ -3,12 +3,6 @@ from tkinter import messagebox
 
 allData = [
     {
-      "Customer Name" : "Customer Name",
-      "Reciept Number" : "Reciept Number",
-      "Item Hired" : "Item Hired",
-      "Number Hired": "Number Hired"
-    },
-    {
       "Customer Name" : "Kim",
       "Reciept Number" : 12345678,
       "Item Hired" : "Spoon",
@@ -16,15 +10,22 @@ allData = [
     }
   ]
 
+def deleteButton(id):
+    print(id)
+
 def displayData():
     dataWindow.deiconify()
-    row = 0
+    row = 1
+    Label(dataWindow, text="Customer Name").grid(padx=10,column=0, row=0, sticky=W)
+    Label(dataWindow, text="Reciept Number").grid(padx=10,column=1, row=0, sticky=W)
+    Label(dataWindow, text="Item Hired").grid(padx=10,column=2, row=0, sticky=W)
+    Label(dataWindow, text="Number Hired").grid(padx=10,column=3, row=0, sticky=W)
     for obj in allData:
         Label(dataWindow, text=obj.get("Customer Name")).grid(padx=10,column=0, row=row, sticky=W)
         Label(dataWindow, text=obj.get("Reciept Number")).grid(padx=10,column=1, row=row, sticky=W)
         Label(dataWindow, text=obj.get("Item Hired")).grid(padx=10,column=2, row=row, sticky=W)
         Label(dataWindow, text=obj.get("Number Hired")).grid(padx=10,column=3, row=row, sticky=W)
-        Button(dataWindow, text="Delete").grid(padx=10,column=4, row=row, sticky=W)
+        Button(dataWindow, text="Delete", command=lambda:deleteButton(obj.get(id))).grid(padx=10,column=4, row=row, sticky=W)
         row += 1
 
 main = Tk()
