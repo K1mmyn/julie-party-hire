@@ -1,14 +1,25 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import ttk
 
 allData = [
     {
       "Customer Name" : "Kim",
       "Reciept Number" : 12345678,
       "Item Hired" : "Spoon",
-      "Number Hired": 12
+      "Number Hired": 12,
+      "id" : 1
     }
   ]
+
+# Data Validation 
+
+def customerNameValidation():
+    try:
+        isinstance(customerName.get(), str)
+        print(customerName.get())
+    except:
+        pass
 
 def deleteButton(id):
     print(id)
@@ -35,22 +46,26 @@ main.geometry("550x450")
 dataWindow.geometry("550x450")
 
 # Customers Name
-Label(text="Customer Name").grid(column=0, row=0, sticky=W)
-Entry().grid(column=1, row=0)
+Label(main, text="Customer Name").grid(column=0, row=0, sticky=W)
+customerName = Entry(main)
+customerName.grid(column=1, row=0)
 
 # Recipt Number
-Label(text="Receipt Number").grid(column=0, row=1, sticky=W)
-Entry().grid(column=1, row=1)
+Label(main, text="Receipt Number").grid(column=0, row=1, sticky=W)
+recieptNumber = Entry(main)
+recieptNumber.grid(column=1, row=1)
 
 # Item Hired
-Label(text="Item Hired").grid(column=0, row=2, sticky=W)
-Entry().grid(column=1, row=2)
+Label(main, text="Item Hired").grid(column=0, row=2, sticky=W)
+itemHired = Entry(main)
+itemHired.grid(column=1, row=2)
 
 # Number Hired
-Label(text="Number Hired").grid(column=0, row=3, sticky=W)
-Entry().grid(column=1, row=3)
+Label(main, text="Number Hired").grid(column=0, row=3, sticky=W)
+numberHired = Entry(main)
+numberHired.grid(column=1, row=3)
 
 # Show Data & 
-Button(text="Show Entries", command=displayData).grid(columnspan=1, column=0, row=4, sticky=W)
+Button(main, text="Show Entries", command=customerNameValidation).grid(columnspan=1, column=0, row=4, sticky=W)
 
 main.mainloop()
