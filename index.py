@@ -14,8 +14,8 @@ allData = [
 
 # Data Validation 
 
-def deleteButton(id):
-    print(id)
+def submitData():
+    pass
 
 def displayData():
     # Display Header for Data 
@@ -35,8 +35,16 @@ def displayData():
         Label(dataWindow, text=obj.get("Reciept Number")).grid(padx=10,column=1, row=row, sticky=W)
         Label(dataWindow, text=obj.get("Item Hired")).grid(padx=10,column=2, row=row, sticky=W)
         Label(dataWindow, text=obj.get("Number Hired")).grid(padx=10,column=3, row=row, sticky=W)
-        Button(dataWindow, text="Delete", command=lambda:deleteButton(obj.get(id))).grid(padx=10,column=4, row=row, sticky=W)
+        Button(dataWindow, text="Delete", command="").grid(padx=10,column=4, row=row, sticky=W)
         row += 1
+
+items = [
+    "Spoon",
+    "Knife",
+    "Fork",
+    "Cup",
+    "Plate",
+]
 
 # Main Window
 main = Tk()
@@ -53,25 +61,31 @@ dataWindow.geometry("550x450")
 
 # Customers Name
 Label(main, text="Customer Name").grid(column=0, row=0, sticky=W)
-customerName = Entry(main)
+customerName = Entry(main, width=17)
 customerName.grid(column=1, row=0)
 
 # Recipt Number
 Label(main, text="Receipt Number").grid(column=0, row=1, sticky=W)
-recieptNumber = Entry(main)
+recieptNumber = Entry(main, width=17)
 recieptNumber.grid(column=1, row=1)
 
 # Item Hired
+itemHiredVar = StringVar()
+itemHiredVar.set("...")
+
+itemHiredDropDown = OptionMenu(main, itemHiredVar, *items)
+itemHiredDropDown.configure(width=13)
 Label(main, text="Item Hired").grid(column=0, row=2, sticky=W)
-itemHired = Entry(main)
-itemHired.grid(column=1, row=2)
+itemHiredDropDown.grid(column=1, row=2)
 
 # Number Hired
 Label(main, text="Number Hired").grid(column=0, row=3, sticky=W)
-numberHired = Entry(main)
+numberHired = Entry(main, width=17)
 numberHired.grid(column=1, row=3)
 
-# Show Data & 
-Button(main, text="Show Entries", command=displayData).grid(columnspan=1, column=0, row=4, sticky=W)
+# Show Data & Add Data
+
+Button(main, text="Show Entries", command=displayData).grid(column=0, row=4, sticky=W)
+Button(main, text="Submit Entry", command=submitData).grid(column=1, row=4, sticky=W)
 
 main.mainloop()
