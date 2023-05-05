@@ -14,23 +14,22 @@ allData = [
 
 # Data Validation 
 
-def customerNameValidation():
-    try:
-        isinstance(customerName.get(), str)
-        print(customerName.get())
-    except:
-        pass
-
 def deleteButton(id):
     print(id)
 
 def displayData():
-    dataWindow.deiconify()
-    row = 1
+    # Display Header for Data 
     Label(dataWindow, text="Customer Name").grid(padx=10,column=0, row=0, sticky=W)
     Label(dataWindow, text="Reciept Number").grid(padx=10,column=1, row=0, sticky=W)
     Label(dataWindow, text="Item Hired").grid(padx=10,column=2, row=0, sticky=W)
     Label(dataWindow, text="Number Hired").grid(padx=10,column=3, row=0, sticky=W)
+
+    # Revealing Data Window
+    dataWindow.deiconify()
+
+    row = 1
+
+    # Printing Data for allData
     for obj in allData:
         Label(dataWindow, text=obj.get("Customer Name")).grid(padx=10,column=0, row=row, sticky=W)
         Label(dataWindow, text=obj.get("Reciept Number")).grid(padx=10,column=1, row=row, sticky=W)
@@ -39,9 +38,16 @@ def displayData():
         Button(dataWindow, text="Delete", command=lambda:deleteButton(obj.get(id))).grid(padx=10,column=4, row=row, sticky=W)
         row += 1
 
+# Main Window
 main = Tk()
+
+# Data Window
 dataWindow = Toplevel()
+
+# Hiding Data Window
 dataWindow.withdraw()
+
+# Window Geometry 
 main.geometry("550x450")
 dataWindow.geometry("550x450")
 
@@ -66,6 +72,6 @@ numberHired = Entry(main)
 numberHired.grid(column=1, row=3)
 
 # Show Data & 
-Button(main, text="Show Entries", command=customerNameValidation).grid(columnspan=1, column=0, row=4, sticky=W)
+Button(main, text="Show Entries", command=displayData).grid(columnspan=1, column=0, row=4, sticky=W)
 
 main.mainloop()
