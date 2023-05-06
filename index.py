@@ -7,15 +7,7 @@ allData = []
 
 # Data Validation 
 
-# Use Try and Except
-    # try:
-    #     reciept = int(recieptNumber.get())
-    #     print(reciept)
-    # except:
-    #     messagebox.showerror(title="Name Error", message="Please Enter a Name")
-
 # For Dropdown if the variable is equal to the orginal set value throw an error
-
 
 def submitData():
     
@@ -23,11 +15,16 @@ def submitData():
     # Todo: Use Try Except for Data Validation 
     # Todo: Get CustomerName as a string
     
+    # Data Validation
+
     customer = customerName.get()
+
+    if customer.isalpha() == False:
+        messagebox.showerror(title="Name Error", message="Name must only include letters from a-z")
+
     reciept = int(recieptNumber.get())
     item = itemHiredVar.get()
     itemAmount = int(numberHired.get())
-
 
     userEntry = dict(
           CustomerName = customer, 
@@ -41,6 +38,9 @@ def submitData():
     displayData()
 
 def deleteEntry(id):
+
+    # ! Ask user if they want to delete this or not
+    # TODO use a delete message box and based of the boolean value from it either do nothing or run the for loop
 
     global allData
     newArr = []
@@ -56,6 +56,8 @@ def deleteEntry(id):
 
 def displayData():
     
+    # Clearing Previous Data in Data Window
+
     for widget in dataWindow.winfo_children():
       if isinstance(widget, Widget):
         widget.destroy()
