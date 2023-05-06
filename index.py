@@ -2,21 +2,19 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 import random
-from DisplayData import displayData
 
 allData = []
-
-# Data Validation 
-
-# For Dropdown if the variable is equal to the orginal set value throw an error
 
 def submitData():
     
     # Getting Data from Entry Boxes
-    # Todo: Use Try Except for Data Validation 
+    # TODO Clear Entry Boxes when submit func is called
+    # TODO Test Data Validation More
     
     # Data Validation
     while True:
+
+            
 
     # * Checking that Customer's Name doesn't include Numbers
 
@@ -61,7 +59,15 @@ def submitData():
             )
         
         allData.append(userEntry)
-        displayData(dataWindow, allData)
+        displayData()
+
+    # * Clearing Entry Boxes
+
+        for widget in main.winfo_children():
+            if isinstance(widget, Entry):
+                widget.delete(0, END)
+            itemHiredVar.set("...")
+            
         break
 
 def deleteEntry(id):
@@ -77,9 +83,37 @@ def deleteEntry(id):
             newArr.append(item)
 
     allData = newArr
+    displayData()
 
-    displayData(dataWindow, allData)
+def displayData():
     
+    # Clearing Previous Data in Data Window
+
+    for widget in dataWindow.winfo_children():
+      if isinstance(widget, Widget):
+        widget.destroy()
+
+    # Display Header for Data 
+    Label(dataWindow, text="Customer Name").grid(padx=10,column=0, row=0, sticky=W)
+    Label(dataWindow, text="Reciept Number").grid(padx=10,column=1, row=0, sticky=W)
+    Label(dataWindow, text="Item Hired").grid(padx=10,column=2, row=0, sticky=W)
+    Label(dataWindow, text="Number Hired").grid(padx=10,column=3, row=0, sticky=W)
+
+    # Revealing Data Window
+    dataWindow.deiconify()
+
+    row = 1
+
+    # Printing Data for allData
+    for obj in allData:
+        Label(dataWindow, text=obj.get("CustomerName")).grid(padx=10,column=0, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("RecieptNumber")).grid(padx=10,column=1, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=2, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=3, row=row, sticky=W)
+
+        Button(dataWindow, text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(padx=10,column=4, row=row, sticky=W)
+
+        row += 1
 
 # Avaliable Items for Rental
 
