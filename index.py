@@ -56,8 +56,10 @@ def deleteEntry(id):
 
 def displayData():
     
-    print(allData)
-    
+    for widget in dataWindow.winfo_children():
+      if isinstance(widget, Widget):
+        widget.destroy()
+
     # Display Header for Data 
     Label(dataWindow, text="Customer Name").grid(padx=10,column=0, row=0, sticky=W)
     Label(dataWindow, text="Reciept Number").grid(padx=10,column=1, row=0, sticky=W)
