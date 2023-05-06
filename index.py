@@ -19,6 +19,10 @@ allData = []
 
 def submitData():
     
+    # Getting Data from Entry Boxes
+    # Todo: Use Try Except for Data Validation 
+    # Todo: Get CustomerName as a string
+    
     customer = customerName.get()
     reciept = int(recieptNumber.get())
     item = itemHiredVar.get()
@@ -36,11 +40,24 @@ def submitData():
     allData.append(userEntry)
     displayData()
 
-def deleteEntry(prop):
-    print(prop)
+def deleteEntry(id):
+
+    global allData
+    newArr = []
+
+    for item in allData:
+        if item.get("id") != id:
+            newArr.append(item)
+
+    allData = newArr
+
+    displayData()
     
 
 def displayData():
+    
+    print(allData)
+    
     # Display Header for Data 
     Label(dataWindow, text="Customer Name").grid(padx=10,column=0, row=0, sticky=W)
     Label(dataWindow, text="Reciept Number").grid(padx=10,column=1, row=0, sticky=W)
@@ -62,6 +79,8 @@ def displayData():
         Button(dataWindow, text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(padx=10,column=4, row=row, sticky=W)
 
         row += 1
+
+# Avaliable Items for Rental
 
 items = [
     "Spoon",
