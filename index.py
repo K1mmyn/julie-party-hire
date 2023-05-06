@@ -34,8 +34,6 @@ def submitData():
         )
     
     allData.append(userEntry)
-    print(allData)
-
     displayData()
 
 def deleteEntry(prop):
@@ -61,7 +59,7 @@ def displayData():
         Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=2, row=row, sticky=W)
         Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=3, row=row, sticky=W)
 
-        Button(dataWindow, text="Delete", command=lambda:deleteEntry(random.random())).grid(padx=10,column=4, row=row, sticky=W)
+        Button(dataWindow, text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(padx=10,column=4, row=row, sticky=W)
 
         row += 1
 
