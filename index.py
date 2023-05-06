@@ -13,29 +13,31 @@ def submitData():
     
     # Getting Data from Entry Boxes
     # Todo: Use Try Except for Data Validation 
-    # Todo: Get CustomerName as a string
     
     # Data Validation
+      customer = customerName.get()
 
-    customer = customerName.get()
+      if customer.isalpha() == False:
+          messagebox.showerror(title="Name Error", message="Name must only include letters from a-z")
+      
+      try:
+        reciept = int(recieptNumber.get())
+      except:
+         messagebox.showerror(title="Reciept Number Error", message="Receipt Number must only include numbers")
 
-    if customer.isalpha() == False:
-        messagebox.showerror(title="Name Error", message="Name must only include letters from a-z")
+      item = itemHiredVar.get()
+      itemAmount = int(numberHired.get())
 
-    reciept = int(recieptNumber.get())
-    item = itemHiredVar.get()
-    itemAmount = int(numberHired.get())
-
-    userEntry = dict(
-          CustomerName = customer, 
-          RecieptNumber = reciept, 
-          ItemHired = item,
-          NumberHired = itemAmount,
-          id = random.random()
-        )
-    
-    allData.append(userEntry)
-    displayData()
+      userEntry = dict(
+            CustomerName = customer, 
+            RecieptNumber = reciept, 
+            ItemHired = item,
+            NumberHired = itemAmount,
+            id = random.random()
+          )
+      
+      allData.append(userEntry)
+      displayData()
 
 def deleteEntry(id):
 
