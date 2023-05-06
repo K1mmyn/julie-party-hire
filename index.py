@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 import random
+from DisplayData import displayData
 
 allData = []
 
@@ -15,29 +16,53 @@ def submitData():
     # Todo: Use Try Except for Data Validation 
     
     # Data Validation
-      customer = customerName.get()
+    while True:
 
-      if customer.isalpha() == False:
-          messagebox.showerror(title="Name Error", message="Name must only include letters from a-z")
-      
-      try:
-        reciept = int(recieptNumber.get())
-      except:
-         messagebox.showerror(title="Reciept Number Error", message="Receipt Number must only include numbers")
+    # * Checking that Customer's Name doesn't include Numbers
 
-      item = itemHiredVar.get()
-      itemAmount = int(numberHired.get())
+        customer = customerName.get()
 
-      userEntry = dict(
+        if customer.isalpha() == False:
+            messagebox.showerror(title="Name Error", message="Name must only include letters from a-z")
+            break
+    
+    # * Asking if the User Input can be converted into an int if not throw Error
+
+        try:
+            reciept = int(recieptNumber.get())
+        except:
+            messagebox.showerror(title="Reciept Number Error", message="Receipt Number must only include numbers")
+            break
+
+    # * Checking that item has been changed from orignally set Value
+
+        item = itemHiredVar.get()
+
+        if item == "...":
+            messagebox.showerror(title="Item Hired Error", message="Select an Item which has been Hired")
+            break
+    
+    # * Asking if the User Input can be converted into an int if not throw Error
+
+        try:
+            itemHired = int(numberHired.get())
+        except:
+            messagebox.showerror(title="Reciept Number Error", message="Item Hired must only include numbers")
+            break
+
+    # * New Entry Creation
+
+        userEntry = dict(
             CustomerName = customer, 
             RecieptNumber = reciept, 
             ItemHired = item,
-            NumberHired = itemAmount,
+            NumberHired = itemHired,
             id = random.random()
-          )
-      
-      allData.append(userEntry)
-      displayData()
+            )
+        
+        allData.append(userEntry)
+        displayData(dataWindow, allData)
+        break
 
 def deleteEntry(id):
 
@@ -53,38 +78,8 @@ def deleteEntry(id):
 
     allData = newArr
 
-    displayData()
+    displayData(dataWindow, allData)
     
-
-def displayData():
-    
-    # Clearing Previous Data in Data Window
-
-    for widget in dataWindow.winfo_children():
-      if isinstance(widget, Widget):
-        widget.destroy()
-
-    # Display Header for Data 
-    Label(dataWindow, text="Customer Name").grid(padx=10,column=0, row=0, sticky=W)
-    Label(dataWindow, text="Reciept Number").grid(padx=10,column=1, row=0, sticky=W)
-    Label(dataWindow, text="Item Hired").grid(padx=10,column=2, row=0, sticky=W)
-    Label(dataWindow, text="Number Hired").grid(padx=10,column=3, row=0, sticky=W)
-
-    # Revealing Data Window
-    dataWindow.deiconify()
-
-    row = 1
-
-    # Printing Data for allData
-    for obj in allData:
-        Label(dataWindow, text=obj.get("CustomerName")).grid(padx=10,column=0, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("RecieptNumber")).grid(padx=10,column=1, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=2, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=3, row=row, sticky=W)
-
-        Button(dataWindow, text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(padx=10,column=4, row=row, sticky=W)
-
-        row += 1
 
 # Avaliable Items for Rental
 
