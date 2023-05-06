@@ -15,7 +15,11 @@ allData = [
 # Data Validation 
 
 def submitData():
-    pass
+    
+    try:
+        reciept = recieptNumber.getint()
+    except:
+        messagebox.showerror(title="Name Error", message="Please Enter a Name")
 
 def displayData():
     # Display Header for Data 
