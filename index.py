@@ -1,25 +1,46 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
+import random
 
-allData = [
-    {
-      "Customer Name" : "Kim",
-      "Reciept Number" : 12345678,
-      "Item Hired" : "Spoon",
-      "Number Hired": 12,
-      "id" : 1
-    }
-  ]
+allData = []
 
 # Data Validation 
 
+# Use Try and Except
+    # try:
+    #     reciept = int(recieptNumber.get())
+    #     print(reciept)
+    # except:
+    #     messagebox.showerror(title="Name Error", message="Please Enter a Name")
+
+# For Dropdown if the variable is equal to the orginal set value throw an error
+
+
 def submitData():
     
-    try:
-        reciept = recieptNumber.getint()
-    except:
-        messagebox.showerror(title="Name Error", message="Please Enter a Name")
+    customer = customerName.get()
+    reciept = int(recieptNumber.get())
+    item = itemHiredVar.get()
+    itemAmount = int(numberHired.get())
+
+
+    userEntry = dict(
+          CustomerName = customer, 
+          RecieptNumber = reciept, 
+          ItemHired = item,
+          NumberHired = itemAmount,
+          id = random.random()
+        )
+    
+    allData.append(userEntry)
+    print(allData)
+
+    displayData()
+
+def deleteEntry(prop):
+    print(prop)
+    
 
 def displayData():
     # Display Header for Data 
@@ -35,11 +56,13 @@ def displayData():
 
     # Printing Data for allData
     for obj in allData:
-        Label(dataWindow, text=obj.get("Customer Name")).grid(padx=10,column=0, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("Reciept Number")).grid(padx=10,column=1, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("Item Hired")).grid(padx=10,column=2, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("Number Hired")).grid(padx=10,column=3, row=row, sticky=W)
-        Button(dataWindow, text="Delete", command="").grid(padx=10,column=4, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("CustomerName")).grid(padx=10,column=0, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("RecieptNumber")).grid(padx=10,column=1, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=2, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=3, row=row, sticky=W)
+
+        Button(dataWindow, text="Delete", command=lambda:deleteEntry(random.random())).grid(padx=10,column=4, row=row, sticky=W)
+
         row += 1
 
 items = [
