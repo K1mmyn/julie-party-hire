@@ -8,7 +8,6 @@ allData = []
 def submitData():
     
     # Getting Data from Entry Boxes
-    # TODO Clear Entry Boxes when submit func is called
     # TODO Test Data Validation More
     
     # Data Validation
@@ -67,23 +66,25 @@ def submitData():
             if isinstance(widget, Entry):
                 widget.delete(0, END)
             itemHiredVar.set("...")
-            
+
         break
 
 def deleteEntry(id):
 
     # ! Ask user if they want to delete this or not
     # TODO use a delete message box and based of the boolean value from it either do nothing or run the for loop
+    
+    if messagebox.askyesno(message="do you want to delete"):
 
-    global allData
-    newArr = []
+        global allData
+        newArr = []
 
-    for item in allData:
-        if item.get("id") != id:
-            newArr.append(item)
+        for item in allData:
+            if item.get("id") != id:
+                newArr.append(item)
 
-    allData = newArr
-    displayData()
+        allData = newArr
+        displayData()
 
 def displayData():
     
