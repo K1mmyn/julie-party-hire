@@ -24,7 +24,8 @@ def submitData():
         FirstName = firstName.get()
         LastName = lastName.get()
 
-        if FirstName.isalpha() or LastName.isalpha() == False:
+        if FirstName.isalpha() == False or LastName.isalpha() == False:
+
             messagebox.showerror(title="Name Error", message="Name must only include letters from a-z")
             break
     
@@ -101,10 +102,11 @@ def displayData():
         widget.destroy()
 
     # Display Header for Data 
-    Label(dataWindow, text="Customer Name").grid(padx=10,column=0, row=0, sticky=W)
-    Label(dataWindow, text="Reciept Number").grid(padx=10,column=1, row=0, sticky=W)
-    Label(dataWindow, text="Item Hired").grid(padx=10,column=2, row=0, sticky=W)
-    Label(dataWindow, text="Number Hired").grid(padx=10,column=3, row=0, sticky=W)
+    Label(dataWindow, text="First Name").grid(padx=10,column=0, row=0, sticky=W)
+    Label(dataWindow, text="Last Name").grid(padx=10,column=1, row=0, sticky=W)
+    Label(dataWindow, text="Reciept Number").grid(padx=10,column=2, row=0, sticky=W)
+    Label(dataWindow, text="Item Hired").grid(padx=10,column=3, row=0, sticky=W)
+    Label(dataWindow, text="Number Hired").grid(padx=10,column=4, row=0, sticky=W)
 
     # Revealing Data Window
     dataWindow.deiconify()
@@ -113,12 +115,13 @@ def displayData():
 
     # Printing Data for allData
     for obj in allData:
-        Label(dataWindow, text=obj.get("CustomerName")).grid(padx=10,column=0, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("RecieptNumber")).grid(padx=10,column=1, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=2, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=3, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("CustomerFirstName")).grid(padx=10,column=0, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("CustomerLastName")).grid(padx=10,column=1, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("RecieptNumber")).grid(padx=10,column=2, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=3, row=row, sticky=W)
+        Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=4, row=row, sticky=W)
 
-        Button(dataWindow, text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(padx=10,column=4, row=row, sticky=W)
+        Button(dataWindow, text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(padx=10,column=5, row=row, sticky=W)
 
         row += 1
 
@@ -143,7 +146,7 @@ dataWindow.withdraw()
 
 # Window Geometry 
 main.geometry("550x450")
-dataWindow.geometry("550x450")
+dataWindow.geometry("650x450")
 
 # Customers Name
 # Label(main, text="Customer Name").grid(column=0, row=0, sticky=W)
