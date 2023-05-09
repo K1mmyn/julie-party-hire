@@ -55,7 +55,8 @@ def submitData():
     # * New Entry Creation
 
         userEntry = dict(
-            CustomerName = customer, 
+            CustomerFirstName = FirstName, 
+            CustomerLastName = LastName,
             RecieptNumber = reciept, 
             ItemHired = item,
             NumberHired = itemHired,
