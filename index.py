@@ -21,9 +21,10 @@ def submitData():
 
     # * Checking that Customer's Name doesn't include Numbers
 
-        customer = customerName.get()
+        FirstName = firstName.get()
+        LastName = lastName.get()
 
-        if customer.isalpha() == False:
+        if FirstName.isalpha() or LastName.isalpha() == False:
             messagebox.showerror(title="Name Error", message="Name must only include letters from a-z")
             break
     
