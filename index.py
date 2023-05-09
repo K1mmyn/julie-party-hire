@@ -9,6 +9,10 @@ def submitData():
     
     # Getting Data from Entry Boxes
     # TODO Test Data Validation More
+    # TODO First Name Last Name
+    # ! When Creating object create new Atributes for dict
+    # ! Data window row arrangement
+    # ! Submit window row arragement
     
     # Data Validation
     while True:
@@ -71,10 +75,10 @@ def submitData():
 
 def deleteEntry(id):
 
-    # ! Ask user if they want to delete this or not
-    # TODO use a delete message box and based of the boolean value from it either do nothing or run the for loop
-    
-    if messagebox.askyesno(message="do you want to delete"):
+    # * askyesno return either a truthy value or a falsey value so if askyesno returns a truthy value we run the 
+    # * Delete function 
+
+    if messagebox.askyesno(message="Do you want to delete this Entry?", title="Delete Confirmation"):
 
         global allData
         newArr = []
@@ -140,14 +144,22 @@ main.geometry("550x450")
 dataWindow.geometry("550x450")
 
 # Customers Name
-Label(main, text="Customer Name").grid(column=0, row=0, sticky=W)
-customerName = Entry(main, width=17)
-customerName.grid(column=1, row=0)
+# Label(main, text="Customer Name").grid(column=0, row=0, sticky=W)
+# customerName = Entry(main, width=17)
+# customerName.grid(column=1, row=0)
+
+Label(main, text="First Name").grid(column=0, row=0, sticky=W)
+firstName = Entry(main, width=17)
+firstName.grid(column=1, row=0)
+
+Label(main, text="Last Name").grid(column=0, row=1, sticky=W)
+lastName = Entry(main, width=17)
+lastName.grid(column=1, row=1)
 
 # Recipt Number
-Label(main, text="Receipt Number").grid(column=0, row=1, sticky=W)
+Label(main, text="Receipt Number").grid(column=0, row=2, sticky=W)
 recieptNumber = Entry(main, width=17)
-recieptNumber.grid(column=1, row=1)
+recieptNumber.grid(column=1, row=2)
 
 # Item Hired
 itemHiredVar = StringVar()
@@ -155,17 +167,17 @@ itemHiredVar.set("...")
 
 itemHiredDropDown = OptionMenu(main, itemHiredVar, *items)
 itemHiredDropDown.configure(width=13)
-Label(main, text="Item Hired").grid(column=0, row=2, sticky=W)
-itemHiredDropDown.grid(column=1, row=2)
+Label(main, text="Item Hired").grid(column=0, row=3, sticky=W)
+itemHiredDropDown.grid(column=1, row=3)
 
 # Number Hired
-Label(main, text="Number Hired").grid(column=0, row=3, sticky=W)
+Label(main, text="Number Hired").grid(column=0, row=4, sticky=W)
 numberHired = Entry(main, width=17)
-numberHired.grid(column=1, row=3)
+numberHired.grid(column=1, row=4)
 
 # Show Data & Add Data
 
-Button(main, text="Show Entries", command=displayData).grid(column=0, row=4, sticky=W)
-Button(main, text="Submit Entry", command=submitData).grid(column=1, row=4, sticky=W)
+Button(main, text="Show Entries", command=displayData).grid(column=0, row=5, sticky=W)
+Button(main, text="Submit Entry", command=submitData).grid(column=1, row=5, sticky=W)
 
 main.mainloop()
