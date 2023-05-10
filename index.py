@@ -8,16 +8,10 @@ allData = []
 def submitData():
     
     # Getting Data from Entry Boxes
-    # TODO Test Data Validation More
-    # TODO First Name Last Name
-    # ! When Creating object create new Atributes for dict
-    # ! Data window row arrangement
-    # ! Submit window row arragement
     
     # Data Validation
-    while True:
 
-            
+    while True:
 
     # * Checking that Customer's Name doesn't include Numbers
 
