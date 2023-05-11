@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-from tkinter import ttk
 import random
 
 allData = []
@@ -10,6 +9,7 @@ def submitData():
     # Getting Data from Entry Boxes
     
     # Data Validation
+    # TODO create a hide window button on data entry
 
     while True:
 
@@ -101,6 +101,7 @@ def displayData():
     Label(dataWindow, text="Reciept Number").grid(padx=10,column=2, row=0, sticky=W)
     Label(dataWindow, text="Item Hired").grid(padx=10,column=3, row=0, sticky=W)
     Label(dataWindow, text="Number Hired").grid(padx=10,column=4, row=0, sticky=W)
+    Button(dataWindow, text="Hide Window", command=lambda: hideWindow(dataWindow)).grid(padx=10,column=5, row=0, sticky=W)
 
     # Revealing Data Window
     dataWindow.deiconify()
@@ -119,6 +120,9 @@ def displayData():
 
         row += 1
 
+def hideWindow(window):
+    window.withdraw()
+
 # Avaliable Items for Rental
 
 items = [
@@ -131,21 +135,17 @@ items = [
 
 # Main Window
 main = Tk()
+main.title("Julie Party Hire")
 
 # Data Window
 dataWindow = Toplevel()
 
 # Hiding Data Window
-dataWindow.withdraw()
+hideWindow(dataWindow)
 
 # Window Geometry 
 main.geometry("550x450")
 dataWindow.geometry("650x450")
-
-# Customers Name
-# Label(main, text="Customer Name").grid(column=0, row=0, sticky=W)
-# customerName = Entry(main, width=17)
-# customerName.grid(column=1, row=0)
 
 Label(main, text="First Name").grid(column=0, row=0, sticky=W)
 firstName = Entry(main, width=17)
@@ -165,7 +165,7 @@ itemHiredVar = StringVar()
 itemHiredVar.set("...")
 
 itemHiredDropDown = OptionMenu(main, itemHiredVar, *items)
-itemHiredDropDown.configure(width=13)
+itemHiredDropDown.configure(width=11)
 Label(main, text="Item Hired").grid(column=0, row=3, sticky=W)
 itemHiredDropDown.grid(column=1, row=3)
 
