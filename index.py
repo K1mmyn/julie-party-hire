@@ -151,18 +151,18 @@ hideWindow(dataWindow)
 main.geometry("550x450")
 dataWindow.geometry("650x450")
 
-ttk.Label(main, text="First Name").grid(column=0, row=0, sticky=W)
+ttk.Label(main, text="First Name").grid(column=0, row=0)
 firstName = ttk.Entry(main, width=17)
-firstName.grid(column=1, row=0)
+firstName.grid(padx=10, column=0, row=1)
 
-ttk.Label(main, text="Last Name").grid(column=0, row=1, sticky=W)
+ttk.Label(main, text="Last Name").grid(column=1, row=0)
 lastName = ttk.Entry(main, width=17)
-lastName.grid(column=1, row=1)
+lastName.grid(padx=10, column=1, row=1)
 
 # Recipt Number
-ttk.Label(main, text="Receipt Number").grid(column=0, row=2, sticky=W)
+ttk.Label(main, text="Receipt Number").grid(column=0, row=2)
 recieptNumber = ttk.Entry(main, width=17)
-recieptNumber.grid(column=1, row=2)
+recieptNumber.grid(padx=10, column=0, row=3)
 
 # Item Hired
 itemHiredVar = StringVar()
@@ -170,17 +170,16 @@ itemHiredVar.set("...")
 
 itemHiredDropDown = OptionMenu(main, itemHiredVar, *items)
 itemHiredDropDown.configure(width=11)
-ttk.Label(main, text="Item Hired").grid(column=0, row=3, sticky=W)
-itemHiredDropDown.grid(column=1, row=3)
+ttk.Label(main, text="Item Hired").grid(column=1, row=2)
+itemHiredDropDown.grid(padx=10, column=1, row=3)
 
 # Number Hired
-ttk.Label(main, text="Number Hired").grid(column=0, row=4, sticky=W)
+ttk.Label(main, text="Number Hired").grid(column=0, row=4)
 numberHired = ttk.Entry(main, width=17)
-numberHired.grid(column=1, row=4)
+numberHired.grid(pady=10, padx=10, column=0, row=5)
 
 # Show Data & Add Data
 
-ttk.Button(main, text="Show Entries", command=displayData).grid(column=0, row=5, sticky=W)
-ttk.Button(main, text="Submit Entry", command=submitData).grid(column=1, row=5, sticky=W)
-
+Button(main, text="Show Entries", bg='black', fg='white', width=35, command=displayData).grid(columnspan=2, pady=10, column=0, row=6)
+Button(main, text="Submit Entry", bg="black", fg="white", width=35,command=submitData).grid(columnspan=2, column=0, row=7)
 main.mainloop()
