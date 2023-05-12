@@ -111,8 +111,8 @@ def displayData():
 
     # Printing Data for allData
     for obj in allData:
-        ttk.Label(dataWindow, text=obj.get("CustomerFirstName")).grid(padx=10,column=0, row=row, sticky=W)
-        ttk.Label(dataWindow, text=obj.get("CustomerLastName")).grid(padx=10,column=1, row=row, sticky=W)
+        ttk.Label(dataWindow, text=obj.get("CustomerFirstName").capitalize()).grid(padx=10,column=0, row=row, sticky=W)
+        ttk.Label(dataWindow, text=obj.get("CustomerLastName").capitalize()).grid(padx=10,column=1, row=row, sticky=W)
         ttk.Label(dataWindow, text=obj.get("RecieptNumber")).grid(padx=10,column=2, row=row, sticky=W)
         ttk.Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=3, row=row, sticky=W)
         ttk.Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=4, row=row, sticky=W)
@@ -139,7 +139,6 @@ main = Tk()
 main.title("Julie Party Hire")
 
 style = ttk.Style(main)
-style.theme_use("aqua")
 
 # Data Window
 dataWindow = Toplevel()
@@ -151,35 +150,35 @@ hideWindow(dataWindow)
 main.geometry("550x450")
 dataWindow.geometry("650x450")
 
-ttk.Label(main, text="First Name").grid(column=0, row=0)
-firstName = ttk.Entry(main, width=17)
-firstName.grid(padx=10, column=0, row=1)
+ttk.Label(main, text="First Name", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, sticky=W, column=0, row=0)
+firstName = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+firstName.grid(padx=20, column=0, row=1, ipady=6)
 
-ttk.Label(main, text="Last Name").grid(column=1, row=0)
-lastName = ttk.Entry(main, width=17)
-lastName.grid(padx=10, column=1, row=1)
+ttk.Label(main, text="Last Name", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, sticky=W, column=1, row=0)
+lastName = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+lastName.grid(padx=20, column=1, row=1, ipady=6)
 
 # Recipt Number
-ttk.Label(main, text="Receipt Number").grid(column=0, row=2)
-recieptNumber = ttk.Entry(main, width=17)
-recieptNumber.grid(padx=10, column=0, row=3)
+ttk.Label(main, text="Receipt Number", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, sticky=W, column=0, row=2)
+recieptNumber = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+recieptNumber.grid(padx=20, column=0, row=3, ipady=6)
 
 # Item Hired
 itemHiredVar = StringVar()
 itemHiredVar.set("...")
 
 itemHiredDropDown = OptionMenu(main, itemHiredVar, *items)
-itemHiredDropDown.configure(width=11)
-ttk.Label(main, text="Item Hired").grid(column=1, row=2)
-itemHiredDropDown.grid(padx=10, column=1, row=3)
+itemHiredDropDown.configure(width=26)
+ttk.Label(main, text="Item Hired", font=("Helvetica", 12, "italic", "bold"), borderwidth=0).grid(pady=10, padx=10, column=1, row=2, sticky=W)
+itemHiredDropDown.grid(padx=20, column=1, row=3, ipady=6)
 
 # Number Hired
-ttk.Label(main, text="Number Hired").grid(column=0, row=4)
-numberHired = ttk.Entry(main, width=17)
-numberHired.grid(pady=10, padx=10, column=0, row=5)
+ttk.Label(main, text="Number Hired", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, column=0, row=4, sticky=W)
+numberHired = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+numberHired.grid(padx=20, column=0, row=5, ipady=6)
 
 # Show Data & Add Data
 
-Button(main, text="Show Entries", font=("Helvetica", 16, "bold"), height=2, bg='black', fg='white', width=35, command=displayData).grid(columnspan=2, pady=10, column=0, row=6)
-Button(main, text="Submit Entry", font=("Helvetica", 16, "bold"), height=2, bg="black", fg="white", width=35,command=submitData).grid(columnspan=2, column=0, row=7)
+Button(main, text="Show Entries", font=("Helvetica", 16, "bold"), height=1, bg='black', fg='white', width=20, command=displayData).grid(columnspan=2, pady=20, column=0, row=6)
+Button(main, text="Submit Entry", font=("Helvetica", 16, "bold"), height=1, bg="black", fg="white", width=20,command=submitData).grid(columnspan=2, column=0, row=7)
 main.mainloop()
