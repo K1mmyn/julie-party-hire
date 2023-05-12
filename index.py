@@ -180,6 +180,6 @@ numberHired.grid(pady=10, padx=10, column=0, row=5)
 
 # Show Data & Add Data
 
-Button(main, text="Show Entries", bg='black', fg='white', width=35, command=displayData).grid(columnspan=2, pady=10, column=0, row=6)
-Button(main, text="Submit Entry", bg="black", fg="white", width=35,command=submitData).grid(columnspan=2, column=0, row=7)
+Button(main, text="Show Entries", font=("Helvetica", 16, "bold"), height=2, bg='black', fg='white', width=35, command=displayData).grid(columnspan=2, pady=10, column=0, row=6)
+Button(main, text="Submit Entry", font=("Helvetica", 16, "bold"), height=2, bg="black", fg="white", width=35,command=submitData).grid(columnspan=2, column=0, row=7)
 main.mainloop()
