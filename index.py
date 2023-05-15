@@ -1,17 +1,18 @@
 from tkinter import *
 from tkinter import messagebox
-from tkinter import ttk
+from tkinter.font import Font
 import random
 
 allData = []
+
+def quit():
+    main.quit()
 
 def submitData():
     
     # Getting Data from Entry Boxes
     
     # Data Validation
-    # TODO create a hide window button on data entry
-    # TODO Create quit button
 
     while True:
 
@@ -98,12 +99,12 @@ def displayData():
         widget.destroy()
 
     # Display Header for Data 
-    Label(dataWindow, text="First Name").grid(padx=10,column=0, row=0, sticky=W)
-    Label(dataWindow, text="Last Name").grid(padx=10,column=1, row=0, sticky=W)
-    Label(dataWindow, text="Reciept Number").grid(padx=10,column=2, row=0, sticky=W)
-    Label(dataWindow, text="Item Hired").grid(padx=10,column=3, row=0, sticky=W)
-    Label(dataWindow, text="Number Hired").grid(padx=10,column=4, row=0, sticky=W)
-    Button(dataWindow, text="Hide Window", command=lambda: hideWindow(dataWindow)).grid(padx=10,column=5, row=0, sticky=W)
+    Label(dataWindow, font=dataFont, text="First Name").grid(pady=5, padx=10,column=0, row=0, sticky=W)
+    Label(dataWindow, font=dataFont, text="Last Name").grid(pady=5, padx=10,column=1, row=0, sticky=W)
+    Label(dataWindow, font=dataFont, text="Reciept Number").grid(pady=5, padx=10,column=2, row=0, sticky=W)
+    Label(dataWindow, font=dataFont, text="Item Hired").grid(pady=5, padx=10,column=3, row=0, sticky=W)
+    Label(dataWindow, font=dataFont, text="Number Hired").grid(pady=5, padx=10,column=4, row=0, sticky=W)
+    Button(dataWindow, font=dataFont, bg="black", fg="white", text="Hide Window", command=lambda: hideWindow(dataWindow)).grid(pady=5, padx=10, column=5, row=0, sticky=W)
 
     # Revealing Data Window
     dataWindow.deiconify()
@@ -112,14 +113,12 @@ def displayData():
 
     # Printing Data for allData
     for obj in allData:
-        Label(dataWindow, text=obj.get("CustomerFirstName").capitalize()).grid(padx=10,column=0, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("CustomerLastName").capitalize()).grid(padx=10,column=1, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("RecieptNumber")).grid(padx=10,column=2, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("ItemHired")).grid(padx=10,column=3, row=row, sticky=W)
-        Label(dataWindow, text=obj.get("NumberHired")).grid(padx=10,column=4, row=row, sticky=W)
-
-        Button(dataWindow, text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(padx=10,column=5, row=row, sticky=W)
-
+        Label(dataWindow, font=dataFont, bg="ivory3" if row % 2 == 1 else "ghost white", text=obj.get("CustomerFirstName").capitalize()).grid(pady=5, ipady=3,column=0, row=row, sticky="WE")
+        Label(dataWindow, font=dataFont, bg="ivory3" if row % 2 == 1 else "ghost white", text=obj.get("CustomerLastName").capitalize()).grid(pady=5, ipady=3,column=1, row=row, sticky="WE")
+        Label(dataWindow, font=dataFont, bg="ivory3" if row % 2 == 1 else "ghost white", text=obj.get("RecieptNumber")).grid(pady=5, ipady=3,column=2, row=row, sticky="WE")
+        Label(dataWindow, font=dataFont, bg="ivory3" if row % 2 == 1 else "ghost white", text=obj.get("ItemHired")).grid(pady=5, ipady=3,column=3, row=row, sticky="WE")
+        Label(dataWindow, font=dataFont, bg="ivory3" if row % 2 == 1 else "ghost white", text=obj.get("NumberHired")).grid(pady=5, ipady=3,column=4, row=row, sticky="WE")
+        Button(dataWindow, font=dataFont, bg="black", fg="white", text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(ipady=2, padx=10, column=5, row=row, sticky="WE")
         row += 1
 
 def hideWindow(window):
@@ -145,20 +144,42 @@ dataWindow = Toplevel()
 # Hiding Data Window
 hideWindow(dataWindow)
 
+# Label font
+
+labelFont = Font(
+    family="Helvetica",
+    weight="bold",
+    slant="italic",
+    size=12
+)
+
+buttonFont = Font(
+    family="Helvetica",
+    weight="bold",
+    slant="italic",
+    size=16
+)
+
+dataFont = Font(
+    family="Helvetica",
+    slant="italic",
+    size=8
+)
+
 # Window Geometry 
 main.geometry("550x450")
 dataWindow.geometry("650x450")
 
-Label(main, text="First Name", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, sticky=W, column=0, row=0)
+Label(main, text="First Name", font=labelFont).grid(pady=10, padx=10, sticky=W, column=0, row=0)
 firstName = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
 firstName.grid(padx=20, column=0, row=1, ipady=6)
 
-Label(main, text="Last Name", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, sticky=W, column=1, row=0)
+Label(main, text="Last Name", font=labelFont).grid(pady=10, padx=10, sticky=W, column=1, row=0)
 lastName = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
 lastName.grid(padx=20, column=1, row=1, ipady=6)
 
 # Recipt Number
-Label(main, text="Receipt Number", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, sticky=W, column=0, row=2)
+Label(main, text="Receipt Number", font=labelFont).grid(pady=10, padx=10, sticky=W, column=0, row=2)
 recieptNumber = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
 recieptNumber.grid(padx=20, column=0, row=3, ipady=6)
 
@@ -168,21 +189,25 @@ itemHiredVar.set("...")
 
 itemHiredDropDown = OptionMenu(main, itemHiredVar, *items)
 itemHiredDropDown.configure(width=26, borderwidth=0, bg="ivory3")
-Label(main, text="Item Hired", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, column=1, row=2, sticky=W)
-itemHiredDropDown.grid(padx=20, column=1, row=3, ipady=6)
+Label(main, text="Item Hired", font=labelFont).grid(pady=10, padx=10, column=1, row=2, sticky=W)
+itemHiredDropDown.grid(padx=20, column=1, row=3, ipady=4, ipadx=8)
 
 # Number Hired
-Label(main, text="Number Hired", font=("Helvetica", 12, "italic", "bold")).grid(pady=10, padx=10, column=0, row=4, sticky=W)
+Label(main, text="Number Hired", font=labelFont).grid(pady=10, padx=10, column=0, row=4, sticky=W)
 numberHired = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
 
 numberHired.grid(padx=20, column=0, row=5, ipady=6)
 
+# Quit Button
+
+Button(main, text="QUIT", font=labelFont, fg="white", bg="black", borderwidth=0, command=quit).grid(padx=30, column=1, row=5, sticky=W, ipadx=74, ipady=1)
+
 # Show Data & Add Data
 
-Button(main, text="Show Entries", font=("Helvetica", 16, "bold"), height=1, bg='black', fg='white', width=20, 
+Button(main, text="Show Entries", font=buttonFont, height=1, bg='black', fg='white', width=20, 
        command=displayData).grid(columnspan=2, pady=20, column=0, row=6)
 
-Button(main, text="Submit Entry", font=("Helvetica", 16, "bold"), height=1, bg="black", fg="white", width=20,
+Button(main, text="Submit Entry", font=buttonFont, height=1, bg="black", fg="white", width=20,
        command=submitData).grid(columnspan=2, column=0, row=7)
 
 main.mainloop()
