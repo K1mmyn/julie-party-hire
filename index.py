@@ -53,7 +53,7 @@ def submitData():
             break
 
         if itemHired <= 0 or itemHired > 500:
-            messagebox.showerror(title="Number Hired Error", message=f"You can only hire between 1 - 500 {item}")
+            messagebox.showerror(title="Number Hired Error", message=f"You can only hire between 1 - 500 {item}s")
             break
 
     # * New Entry Creation
@@ -172,21 +172,26 @@ dataFont = Font(
     size=8
 )
 
+entryFont = Font(
+    family="Helvetica",
+    size=10
+)
+
 # Window Geometry 
 main.geometry("550x450")
 dataWindow.geometry("650x450")
 
 Label(main, text="First Name", font=labelFont).grid(pady=10, padx=10, sticky=W, column=0, row=0)
-firstName = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+firstName = Entry(main, width=30, font=entryFont, bg="ivory3", borderwidth=0)
 firstName.grid(padx=20, column=0, row=1, ipady=6)
 
 Label(main, text="Last Name", font=labelFont).grid(pady=10, padx=10, sticky=W, column=1, row=0)
-lastName = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+lastName = Entry(main, width=30, font=entryFont, bg="ivory3", borderwidth=0)
 lastName.grid(padx=20, column=1, row=1, ipady=6)
 
 # Recipt Number
 Label(main, text="Receipt Number", font=labelFont).grid(pady=10, padx=10, sticky=W, column=0, row=2)
-recieptNumber = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+recieptNumber = Entry(main, width=30, font=entryFont, bg="ivory3", borderwidth=0)
 recieptNumber.grid(padx=20, column=0, row=3, ipady=6)
 
 # Item Hired
@@ -200,7 +205,7 @@ itemHiredDropDown.grid(padx=20, column=1, row=3, ipady=4, ipadx=8)
 
 # Number Hired
 Label(main, text="Number Hired", font=labelFont).grid(pady=10, padx=10, column=0, row=4, sticky=W)
-numberHired = Entry(main, width=30, font=("Helvetica", 10), bg="ivory3", borderwidth=0)
+numberHired = Entry(main, width=30, font=entryFont, bg="ivory3", borderwidth=0)
 
 numberHired.grid(padx=20, column=0, row=5, ipady=6)
 
