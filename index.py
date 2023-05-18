@@ -5,16 +5,9 @@ import random
 
 allData = []
 
-def quit():
-    main.quit()
-
 def submitData():
     
-    # Getting Data from Entry Boxes
-    
     # Data Validation
-    # TODO create a hide window button on data entry
-    # TODO Create quit button
 
     while True:
 
@@ -81,7 +74,6 @@ def submitData():
 
 def deleteEntry(id):
 
-    # * askyesno return either a truthy value or a falsey value so if askyesno returns a truthy value we run the 
     # * Delete function 
 
     if messagebox.askyesno(message="Do you want to delete this Entry?", title="Delete Confirmation"):
@@ -105,6 +97,7 @@ def displayData():
         widget.destroy()
 
     # Display Header for Data 
+
     Label(dataWindow, font=dataFont, text="First Name").grid(pady=5, padx=10,column=0, row=0, sticky=W)
     Label(dataWindow, font=dataFont, text="Last Name").grid(pady=5, padx=10,column=1, row=0, sticky=W)
     Label(dataWindow, font=dataFont, text="Reciept Number").grid(pady=5, padx=10,column=2, row=0, sticky=W)
@@ -113,6 +106,7 @@ def displayData():
     Button(dataWindow, font=dataFont, bg="black", fg="white", text="Hide Window", command=lambda: hideWindow(dataWindow)).grid(pady=5, padx=10, column=5, row=0, sticky=W)
 
     # Revealing Data Window
+
     dataWindow.deiconify()
 
     row = 1
@@ -126,6 +120,8 @@ def displayData():
         Label(dataWindow, font=dataFont, bg="ivory3" if row % 2 == 1 else "ghost white", text=obj.get("NumberHired")).grid(pady=5, ipady=3,column=4, row=row, sticky="WE")
         Button(dataWindow, font=dataFont, bg="black", fg="white", text="Delete", command=lambda d=obj.get('id'): deleteEntry(d)).grid(ipady=2, padx=10, column=5, row=row, sticky="WE")
         row += 1
+
+# Get window as a parameter to make function more reusable
 
 def hideWindow(window):
     window.withdraw()
@@ -150,7 +146,7 @@ dataWindow = Toplevel()
 # Hiding Data Window
 hideWindow(dataWindow)
 
-# Label font
+# Font
 
 labelFont = Font(
     family="Helvetica",
@@ -211,7 +207,7 @@ numberHired.grid(padx=20, column=0, row=5, ipady=6)
 
 # Quit Button
 
-Button(main, text="QUIT", font=labelFont, fg="white", bg="black", borderwidth=0, command=quit).grid(padx=30, column=1, row=5, sticky=W, ipadx=74, ipady=1)
+Button(main, text="QUIT", font=labelFont, fg="white", bg="black", borderwidth=0, command=main.quit).grid(padx=30, column=1, row=5, sticky=W, ipadx=74, ipady=1)
 
 # Show Data & Add Data
 
