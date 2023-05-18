@@ -53,7 +53,7 @@ def submitData():
             break
 
         if itemHired <= 0 or itemHired > 500:
-            messagebox.showerror(title="Number Hired Error", message=f"You can only hire between 1 - 500 {item}s")
+            messagebox.showerror(title="Number Hired Error", message=f"You can only hire between 1 - 500 items")
             break
 
     # * New Entry Creation
