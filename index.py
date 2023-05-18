@@ -13,6 +13,8 @@ def submitData():
     # Getting Data from Entry Boxes
     
     # Data Validation
+    # TODO create a hide window button on data entry
+    # TODO Create quit button
 
     while True:
 
@@ -48,6 +50,10 @@ def submitData():
             itemHired = int(numberHired.get())
         except:
             messagebox.showerror(title="Number Hired Error", message="Number Hired must only include numbers")
+            break
+
+        if itemHired <= 0 or itemHired > 500:
+            messagebox.showerror(title="Number Hired Error", message=f"You can only hire between 1 - 500 {item}")
             break
 
     # * New Entry Creation
