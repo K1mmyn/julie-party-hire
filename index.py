@@ -12,7 +12,7 @@ def submitData():
     while True:
 
     # * Checking that Customer's Name doesn't include Numbers
-
+    
         FirstName = firstName.get()
         LastName = lastName.get()
 
